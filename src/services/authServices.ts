@@ -23,7 +23,7 @@ export async function createUser(user: userInsertType) {
 
 export async function emailNotExists(email: string) {
     const data = await getUser(email);
-    if (data === null) {
+    if (!data) {
         throw notFoundError('email doesnt exists!!');
     }
     return data;
