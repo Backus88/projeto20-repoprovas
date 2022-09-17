@@ -6,6 +6,6 @@ export async function cryptInfo(info: string) {
     return hash;
 }
 
-export async function descryptInfo(info: string, hash: string) {
+export async function decryptInfo(info: string, hash: string) {
     return bcrypt.compareSync(info, hash);
 }
