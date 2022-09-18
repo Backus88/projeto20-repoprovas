@@ -1,14 +1,11 @@
 import {
     insertTest,
-    findCategoryById,
     findCategoryByName,
-    findTeacherById,
     findByTeacherAndDiscipline,
     findDisciplineByName,
     findTeacherByName,
     findAllTerms,
-    findByCategories,
-    findByTerms,
+    findByTeacher,
 } from '../repositories/examRepository';
 import { testsInsertType } from '../types/types';
 import { notFoundError } from '../utils/errorMessages';
@@ -52,8 +49,8 @@ export async function createTest(test: testsInsertType) {
     await insertTest(test);
 }
 
-export async function getTestsByTeacherId() {
-    const data = await findAllTerms();
+export async function getTestsByTerms() {
+    const data: any = await findAllTerms();
     let id = null;
     let category;
     let tests;
@@ -66,6 +63,9 @@ export async function getTestsByTeacherId() {
                     for (let index = 0; index < category.length; index++) {
                         tests = category[index].category.tests;
                         for (let j = 0; j < tests.length; j++) {
+                            tests[j].teacherName =
+                                tests[j].teacher.teacher.name;
+                            delete tests[j].teacher;
                             if (id !== tests[j].teacherDisciplineId) {
                                 tests.splice(j, 1);
                                 j--;
@@ -76,5 +76,37 @@ export async function getTestsByTeacherId() {
             }
         }
     }
+    return data;
+}
+
+export async function getTestsByTeacher() {
+    let id = null;
+    let desciplineName = null;
+    const data: any = await findByTeacher();
+    for (const v of data) {
+        for (const z of v.teacherDiscipline) {
+            id = z.id;
+            desciplineName = z.discipline.name;
+            delete z.discipline;
+            if (z.test.length > 0) {
+                for (const y of z.test) {
+                    for (
+                        let index = 0;
+                        index < y.category.tests.length;
+                        index++
+                    ) {
+                        y.category.tests[index].discipline = desciplineName;
+                        if (
+                            id !== y.category.tests[index].teacherDisciplineId
+                        ) {
+                            y.category.tests.splice(index, 1);
+                            index--;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     return data;
 }

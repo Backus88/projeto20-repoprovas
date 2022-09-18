@@ -133,3 +133,38 @@ export async function findByCategories() {
         },
     });
 }
+
+export async function findByTeacher() {
+    return await client.teachers.findMany({
+        select: {
+            name: true,
+            teacherDiscipline: {
+                select: {
+                    id: true,
+                    discipline: {
+                        select: {
+                            name: true,
+                        },
+                    },
+                    test: {
+                        distinct: ['categoryId'],
+                        select: {
+                            category: {
+                                select: {
+                                    name: true,
+                                    tests: {
+                                        select: {
+                                            name: true,
+                                            pdfUrl: true,
+                                            teacherDisciplineId: true,
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    });
+}
