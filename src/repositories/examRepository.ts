@@ -56,3 +56,80 @@ export async function findByTeacherAndDiscipline(
         },
     });
 }
+
+export async function findAllTerms() {
+    return await client.terms.findMany({
+        select: {
+            number: true,
+            disciplines: {
+                select: {
+                    name: true,
+                    teacherDiscipline: {
+                        select: {
+                            id: true,
+                            test: {
+                                distinct: ['categoryId'],
+                                select: {
+                                    category: {
+                                        select: {
+                                            name: true,
+                                            tests: {
+                                                select: {
+                                                    name: true,
+                                                    pdfUrl: true,
+                                                    teacherDisciplineId: true,
+                                                    teacher: {
+                                                        select: {
+                                                            teacher: {
+                                                                select: {
+                                                                    name: true,
+                                                                },
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    });
+}
+
+export async function findByTerms() {
+    return await client.terms.findMany({
+        select: {
+            number: true,
+            disciplines: {
+                select: {
+                    name: true,
+                    teacherDiscipline: {
+                        select: {
+                            id: true,
+                        },
+                    },
+                },
+            },
+        },
+    });
+}
+
+export async function findByCategories() {
+    return await client.categories.findMany({
+        select: {
+            name: true,
+            tests: {
+                select: {
+                    name: true,
+                    pdfUrl: true,
+                    teacherDisciplineId: true,
+                },
+            },
+        },
+    });
+}

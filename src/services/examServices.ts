@@ -6,6 +6,9 @@ import {
     findByTeacherAndDiscipline,
     findDisciplineByName,
     findTeacherByName,
+    findAllTerms,
+    findByCategories,
+    findByTerms,
 } from '../repositories/examRepository';
 import { testsInsertType } from '../types/types';
 import { notFoundError } from '../utils/errorMessages';
@@ -47,4 +50,31 @@ export async function teacherAndDisciplineExists(
 
 export async function createTest(test: testsInsertType) {
     await insertTest(test);
+}
+
+export async function getTestsByTeacherId() {
+    const data = await findAllTerms();
+    let id = null;
+    let category;
+    let tests;
+    for (const v of data) {
+        if (v.disciplines.length > 0) {
+            for (const z of v.disciplines) {
+                id = z.teacherDiscipline[0].id;
+                category = z.teacherDiscipline[0].test;
+                if (z.teacherDiscipline[0].test.length > 0) {
+                    for (let index = 0; index < category.length; index++) {
+                        tests = category[index].category.tests;
+                        for (let j = 0; j < tests.length; j++) {
+                            if (id !== tests[j].teacherDisciplineId) {
+                                tests.splice(j, 1);
+                                j--;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return data;
 }

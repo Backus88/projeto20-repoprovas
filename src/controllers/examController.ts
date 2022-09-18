@@ -6,6 +6,7 @@ import {
     teacherExists,
     teacherAndDisciplineExists,
     createTest,
+    getTestsByTeacherId,
 } from '../services/examServices';
 
 export async function controlExamCreation(req: Request, res: Response) {
@@ -27,4 +28,10 @@ export async function controlExamCreation(req: Request, res: Response) {
     console.log(newExam);
     await createTest(newExam);
     res.sendStatus(201);
+    return;
+}
+
+export async function controlGetExams(req: Request, res: Response) {
+    const data = await getTestsByTeacherId();
+    res.send(data).status(200);
 }
