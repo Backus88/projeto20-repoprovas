@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && npx prisma migrate deploy",
+    "test": "dotenv -e .env prisma migrate dev && dotenv -e .env prisma db seed && dotenv -e .env cross-env jest --no-cache",
     "start": "ts-node src/server.ts",
     "dev": "nodemon src/server.ts"
   },
