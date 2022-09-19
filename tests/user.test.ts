@@ -14,7 +14,7 @@ beforeEach(async () => {
     await client.$executeRaw`TRUNCATE TABLE "users";`;
 });
 
-describe('test route /register', () => {
+describe('test route POST /register', () => {
     test('create new user', async () => {
         const user = createUser;
         const newUser = {
@@ -88,7 +88,7 @@ describe('test route /register', () => {
     });
 });
 
-describe('test route /login', () => {
+describe('test route POST /login', () => {
     test('successful login', async () => {
         const user = createUser;
         const newUser = {
