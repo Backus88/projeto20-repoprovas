@@ -86,7 +86,7 @@ describe('test route POST /exam', () => {
         console.log(result.text);
         expect(result.statusCode).toBe(404);
     }));
-    test('successful exam creation', () => __awaiter(void 0, void 0, void 0, function* () {
+    test('invalid discipline', () => __awaiter(void 0, void 0, void 0, function* () {
         const user = userFactory_1.createUser;
         const newUser = {
             email: user.email,
@@ -94,6 +94,24 @@ describe('test route POST /exam', () => {
             confirmPassword: user.password,
         };
         const exam = examFactory_1.invalidDiscipline;
+        yield (0, supertest_1.default)(app_1.default).post('/register').send(newUser);
+        const login = yield (0, supertest_1.default)(app_1.default).post('/login').send(user);
+        const token = `Bearer ${login.text}`;
+        const result = yield (0, supertest_1.default)(app_1.default)
+            .post('/exam')
+            .send(exam)
+            .set({ authorization: token });
+        console.log(result.text);
+        expect(result.statusCode).toBe(404);
+    }));
+    test('teacher and discipline doesnt match', () => __awaiter(void 0, void 0, void 0, function* () {
+        const user = userFactory_1.createUser;
+        const newUser = {
+            email: user.email,
+            password: user.password,
+            confirmPassword: user.password,
+        };
+        const exam = examFactory_1.doesntMatch;
         yield (0, supertest_1.default)(app_1.default).post('/register').send(newUser);
         const login = yield (0, supertest_1.default)(app_1.default).post('/login').send(user);
         const token = `Bearer ${login.text}`;
@@ -122,7 +140,7 @@ describe('test route POST /exam', () => {
         console.log(result.text);
         expect(result.statusCode).toBe(422);
     }));
-    test('wrong object type', () => __awaiter(void 0, void 0, void 0, function* () {
+    test('empty object', () => __awaiter(void 0, void 0, void 0, function* () {
         const user = userFactory_1.createUser;
         const newUser = {
             email: user.email,

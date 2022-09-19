@@ -17,12 +17,13 @@ function tokenValidation(req, res, next) {
     if (!key) {
         throw (0, errorMessages_1.notFoundError)('key');
     }
+    console.log(token);
     jsonwebtoken_1.default.verify(token, key, (err, payload) => {
         if (err) {
             throw (0, errorMessages_1.notAuthorized)('token');
         }
         res.locals = {
-            payload: payload,
+            payload: payload
         };
         return;
     });

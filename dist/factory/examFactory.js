@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.emptyObject = exports.invalidDiscipline = exports.invalidTeacher = exports.invalidCategory = exports.createExam = void 0;
+exports.doesntMatch = exports.emptyObject = exports.invalidDiscipline = exports.invalidTeacher = exports.invalidCategory = exports.createExam = void 0;
 const faker_1 = require("@faker-js/faker");
 exports.createExam = {
     name: faker_1.faker.lorem.word(),
@@ -36,4 +36,11 @@ exports.emptyObject = {
     category: '',
     discipline: '',
     teacher: '',
+};
+exports.doesntMatch = {
+    name: faker_1.faker.lorem.word(),
+    pdfUrl: faker_1.faker.internet.url(),
+    category: 'Prática',
+    discipline: 'React',
+    teacher: 'Bruna Hamori',
 };

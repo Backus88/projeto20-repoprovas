@@ -1,0 +1,218 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "repoprovas",
+    "dateExported": "2022-09-19T03:35:03.249Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "731fdb1f-3c5b-4c72-8b0d-4bd7b946cdb7",
+            "name": "heroku",
+            "containerId": "",
+            "created": "2022-09-19T03:33:36.060Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "ed7a6c1b-576e-443c-a004-09892df3ba6a",
+            "name": "localhost",
+            "containerId": "",
+            "created": "2022-09-19T03:33:36.059Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "4aa5557d-c92a-418e-8c91-efa739109a24",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "ed7a6c1b-576e-443c-a004-09892df3ba6a",
+            "name": "register",
+            "url": "http://localhost:4000/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2022-09-19T03:33:36.059Z",
+            "modified": "2022-09-19T03:33:36.059Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\t\"email\":\"ai@gmail.com\",\n\t\"password\":\"1234\",\n\t\"confirmPassword\": \"1234\"\n}"
+            },
+            "docs": ""
+        },
+        {
+            "_id": "5a0cb120-41d3-4060-b97c-491916e781bb",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "ed7a6c1b-576e-443c-a004-09892df3ba6a",
+            "name": "login",
+            "url": "http://localhost:4000/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2022-09-19T03:33:36.060Z",
+            "modified": "2022-09-19T03:33:36.060Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\t\"email\":\"ai@gmail.com\",\n\t\"password\":\"1234\"\n}"
+            },
+            "docs": ""
+        },
+        {
+            "_id": "dfe5d750-aa74-4b41-90f1-480a39d37241",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "ed7a6c1b-576e-443c-a004-09892df3ba6a",
+            "name": "createExam",
+            "url": "http://localhost:4000/exam",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2022-09-19T03:33:36.061Z",
+            "modified": "2022-09-19T03:33:36.061Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI3OCwiaWF0IjoxNjYzNTU3MTA1LCJleHAiOjE2NjM1NjQzMDV9.rGXi9CPflEIGU0wJNzCI0LQH303XKPn4O7Jdh_s9Klc"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\t\"name\": \"SoftSkills\",\n\t\"pdfUrl\": \"https://bootcampra.notion.site\",\n\t\"category\": \"Prática\",\n\t\"discipline\":\"Autoconfiança\",\n\t\"teacher\": \"Bruna Hamori\"\n}"
+            },
+            "docs": ""
+        },
+        {
+            "_id": "43ec0471-ee32-4ff1-a09a-4b0b60404b1d",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "ed7a6c1b-576e-443c-a004-09892df3ba6a",
+            "name": "examsByPeriod",
+            "url": "http://localhost:4000/period",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2022-09-19T03:33:36.062Z",
+            "modified": "2022-09-19T03:33:36.062Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer"
+                }
+            ],
+            "params": [],
+            "docs": ""
+        },
+        {
+            "_id": "ff7a6739-53db-43c9-b16d-4a159aa7bd8f",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "ed7a6c1b-576e-443c-a004-09892df3ba6a",
+            "name": "examByTeacher",
+            "url": "http://localhost:4000/teacher",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2022-09-19T03:33:36.063Z",
+            "modified": "2022-09-19T03:33:36.063Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer "
+                }
+            ],
+            "params": [],
+            "docs": ""
+        },
+        {
+            "_id": "e33734b7-318d-4fb1-89c0-be93ec33f86e",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "731fdb1f-3c5b-4c72-8b0d-4bd7b946cdb7",
+            "name": "register",
+            "url": "https://luis-reprovas.herokuapp.com/register",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2022-09-19T03:33:36.064Z",
+            "modified": "2022-09-19T03:33:36.064Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\t\"email\":\"ai@gmail.com\",\n\t\"password\":\"1234\",\n\t\"confirmPassword\": \"1234\"\n}"
+            },
+            "docs": ""
+        },
+        {
+            "_id": "a60e2d6d-5aff-44ac-8561-3e405f520fd7",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "731fdb1f-3c5b-4c72-8b0d-4bd7b946cdb7",
+            "name": "login",
+            "url": "https://luis-reprovas.herokuapp.com/login",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2022-09-19T03:33:36.065Z",
+            "modified": "2022-09-19T03:33:36.065Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\t\"email\":\"ai@gmail.com\",\n\t\"password\":\"1234\"\n}"
+            },
+            "docs": ""
+        },
+        {
+            "_id": "dc652e2d-c812-442e-ac1f-14af0ddec11a",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "731fdb1f-3c5b-4c72-8b0d-4bd7b946cdb7",
+            "name": "createExam",
+            "url": "https://luis-reprovas.herokuapp.com/exam",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2022-09-19T03:33:36.066Z",
+            "modified": "2022-09-19T03:33:36.066Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY2MzU1NzE2OCwiZXhwIjoxNjYzNTY0MzY4fQ.7x0Vxl2iJXL05vf34RiUa3c1FsigfpH1fhvP1qVIfPU"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\t\"name\": \"SoftSkills\",\n\t\"pdfUrl\": \"https://bootcampra.notion.site\",\n\t\"category\": \"Projeto\",\n\t\"discipline\":\"React\",\n\t\"teacher\": \"Bruna Hamori\"\n}"
+            },
+            "docs": ""
+        },
+        {
+            "_id": "1292fb86-a015-425b-8d28-69e180dcfd23",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "731fdb1f-3c5b-4c72-8b0d-4bd7b946cdb7",
+            "name": "examsByPeriod",
+            "url": "https://luis-reprovas.herokuapp.com/period",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2022-09-19T03:33:36.067Z",
+            "modified": "2022-09-19T03:33:36.067Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY2MzU1NzE2OCwiZXhwIjoxNjYzNTY0MzY4fQ.7x0Vxl2iJXL05vf34RiUa3c1FsigfpH1fhvP1qVIfPU"
+                }
+            ],
+            "params": [],
+            "docs": ""
+        },
+        {
+            "_id": "e259912b-be2a-4503-9fbd-89cb680928ca",
+            "colId": "8de0c64c-eef8-4942-923d-448123da2919",
+            "containerId": "731fdb1f-3c5b-4c72-8b0d-4bd7b946cdb7",
+            "name": "examByTeacher",
+            "url": "https://luis-reprovas.herokuapp.com/teacher",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2022-09-19T03:33:36.068Z",
+            "modified": "2022-09-19T03:33:36.068Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer"
+                }
+            ],
+            "params": [],
+            "docs": ""
+        }
+    ]
+}

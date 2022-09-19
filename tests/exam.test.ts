@@ -8,6 +8,7 @@ import {
     invalidTeacher,
     invalidDiscipline,
     emptyObject,
+    doesntMatch,
 } from '../factory/examFactory';
 
 beforeEach(async () => {
@@ -83,7 +84,7 @@ describe('test route POST /exam', () => {
         expect(result.statusCode).toBe(404);
     });
 
-    test('successful exam creation', async () => {
+    test('invalid discipline', async () => {
         const user = createUser;
         const newUser = {
             email: user.email,
@@ -91,6 +92,25 @@ describe('test route POST /exam', () => {
             confirmPassword: user.password,
         };
         const exam = invalidDiscipline;
+        await supertest(app).post('/register').send(newUser);
+        const login = await supertest(app).post('/login').send(user);
+        const token = `Bearer ${login.text}`;
+        const result = await supertest(app)
+            .post('/exam')
+            .send(exam)
+            .set({ authorization: token });
+        console.log(result.text);
+        expect(result.statusCode).toBe(404);
+    });
+
+    test('teacher and discipline doesnt match', async () => {
+        const user = createUser;
+        const newUser = {
+            email: user.email,
+            password: user.password,
+            confirmPassword: user.password,
+        };
+        const exam = doesntMatch;
         await supertest(app).post('/register').send(newUser);
         const login = await supertest(app).post('/login').send(user);
         const token = `Bearer ${login.text}`;
@@ -121,7 +141,7 @@ describe('test route POST /exam', () => {
         expect(result.statusCode).toBe(422);
     });
 
-    test('wrong object type', async () => {
+    test('empty object', async () => {
         const user = createUser;
         const newUser = {
             email: user.email,

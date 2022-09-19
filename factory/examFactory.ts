@@ -40,3 +40,11 @@ export const emptyObject: Body = {
     discipline: '',
     teacher: '',
 };
+
+export const doesntMatch: Body = {
+    name: faker.lorem.word(),
+    pdfUrl: faker.internet.url(),
+    category: 'Prática',
+    discipline: 'React',
+    teacher: 'Bruna Hamori',
+};
