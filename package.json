@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "tsc && npx prisma migrate deploy",
-    "test": "dotenv -e .env prisma migrate dev && dotenv -e .env prisma db seed && dotenv -e .env cross-env jest --no-cache",
+    "test": "dotenv -e .env -- jest -i",
     "start": "ts-node src/server.ts",
     "dev": "nodemon src/server.ts"
   },
