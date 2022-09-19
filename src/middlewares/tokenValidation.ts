@@ -16,7 +16,7 @@ export default function tokenValidation(req: Request, res : Response, next: Next
     if(!key){
         throw notFoundError('key');
     }
-    console.log(token)
+    
     jwt.verify(token, key, (err, payload)=>{
       if (err) {
         throw notAuthorized('token');

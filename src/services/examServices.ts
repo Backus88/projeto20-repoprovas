@@ -76,7 +76,27 @@ export async function getTestsByTerms() {
             }
         }
     }
-    return data;
+    const newArr = Array.from(data);
+    const newData = objectTransform(newArr);
+    return newData;
+}
+
+export function objectTransform(newArr: any) {
+    for (const v of newArr) {
+        for (const z of v.disciplines) {
+            z.teacherDiscipline = z.teacherDiscipline.reduce(
+                (next: any, item: any) => {
+                    return { ...next, item };
+                },
+                {}
+            );
+            z.aux = z.teacherDiscipline.item;
+            delete z.teacherDiscipline;
+            z.categories = z.aux.test;
+            delete z.aux;
+        }
+    }
+    return newArr;
 }
 
 export async function getTestsByTeacher() {
@@ -108,5 +128,22 @@ export async function getTestsByTeacher() {
         }
     }
 
-    return data;
+    const newData = teacherTransform(data);
+
+    return newData;
+}
+
+export function teacherTransform(newArr: any) {
+    for (const v of newArr) {
+        v.teacherDiscipline = v.teacherDiscipline.reduce(
+            (next: any, item: any) => {
+                return { ...next, item };
+            }
+        );
+        v.aux = v.teacherDiscipline.item;
+        delete v.teacherDiscipline;
+        v.categories = v.aux.test;
+        delete v.aux;
+    }
+    return newArr;
 }
