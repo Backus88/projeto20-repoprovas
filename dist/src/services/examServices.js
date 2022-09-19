@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTestsByTeacher = exports.getTestsByTerms = exports.createTest = exports.teacherAndDisciplineExists = exports.teacherExists = exports.disciplineExists = exports.categoryExists = void 0;
+exports.teacherTransform = exports.getTestsByTeacher = exports.objectTransform = exports.getTestsByTerms = exports.createTest = exports.teacherAndDisciplineExists = exports.teacherExists = exports.disciplineExists = exports.categoryExists = void 0;
 const examRepository_1 = require("../repositories/examRepository");
 const errorMessages_1 = require("../utils/errorMessages");
 function categoryExists(name) {
@@ -86,10 +86,27 @@ function getTestsByTerms() {
                 }
             }
         }
-        return data;
+        const newArr = Array.from(data);
+        const newData = objectTransform(newArr);
+        return newData;
     });
 }
 exports.getTestsByTerms = getTestsByTerms;
+function objectTransform(newArr) {
+    for (const v of newArr) {
+        for (const z of v.disciplines) {
+            z.teacherDiscipline = z.teacherDiscipline.reduce((next, item) => {
+                return Object.assign(Object.assign({}, next), { item });
+            }, {});
+            z.aux = z.teacherDiscipline.item;
+            delete z.teacherDiscipline;
+            z.categories = z.aux.test;
+            delete z.aux;
+        }
+    }
+    return newArr;
+}
+exports.objectTransform = objectTransform;
 function getTestsByTeacher() {
     return __awaiter(this, void 0, void 0, function* () {
         let id = null;
@@ -113,7 +130,21 @@ function getTestsByTeacher() {
                 }
             }
         }
-        return data;
+        const newData = teacherTransform(data);
+        return newData;
     });
 }
 exports.getTestsByTeacher = getTestsByTeacher;
+function teacherTransform(newArr) {
+    for (const v of newArr) {
+        v.teacherDiscipline = v.teacherDiscipline.reduce((next, item) => {
+            return Object.assign(Object.assign({}, next), { item });
+        });
+        v.aux = v.teacherDiscipline.item;
+        delete v.teacherDiscipline;
+        v.categories = v.aux.test;
+        delete v.aux;
+    }
+    return newArr;
+}
+exports.teacherTransform = teacherTransform;
