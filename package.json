@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "tsc && npx prisma migrate deploy",
-    "test": "dotenv -e .env -- jest -i",
-    "start": "ts-node src/server.ts",
+    "test": "dotenv -e .env prisma migrate dev && dotenv -e .env prisma db seed && dotenv -e .env -- jest -i",
+    "start": "node dist/src/server.js",
     "dev": "nodemon src/server.ts"
   },
   "keywords": [],
